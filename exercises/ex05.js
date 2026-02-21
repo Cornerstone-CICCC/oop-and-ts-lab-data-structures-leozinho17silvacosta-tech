@@ -5,7 +5,18 @@
 const Queue = require('../lib/Queue');
 
 function mixQueue(queue) {
-  // your code here
+  const n = queue.size();
+  const half = Math.floor(n / 2);
+  const firstHalf = [];
+
+  for (let i = 0; i < half; i++) {
+    firstHalf.push(queue.dequeue());
+  }
+
+  while (firstHalf.length > 0) {
+    queue.enqueue(firstHalf.shift());
+    queue.enqueue(queue.dequeue());
+  }
 }
 
 const queue = new Queue();
